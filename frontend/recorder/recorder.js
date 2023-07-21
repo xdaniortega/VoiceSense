@@ -50,6 +50,7 @@ function saveRecording() {
   reader.readAsDataURL(blob);
 }
 
+function sendInput() {}
 // Eventos de los botones
 document
   .getElementById("startButton")
@@ -57,3 +58,6 @@ document
 document.getElementById("stopButton").addEventListener("click", stopRecording);
 document.getElementById("playButton").addEventListener("click", playRecording);
 document.getElementById("saveButton").addEventListener("click", saveRecording);
+document
+  .getElementById("sendInputButton")
+  .addEventListener("click", saveRecording);
