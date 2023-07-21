@@ -1,5 +1,4 @@
 from transformers import WhisperProcessor, WhisperForConditionalGeneration
-from datasets import load_dataset
 import soundfile as sf
 
 # load model and processor
@@ -7,10 +6,10 @@ processor = WhisperProcessor.from_pretrained("openai/whisper-large-v2")
 model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-large-v2")
 model.config.forced_decoder_ids = None
 
-# load dummy dataset and read audio files
-ds = load_dataset("hf-internal-testing/librispeech_asr_dummy", "clean", split="validation")
-sample = ds[0]["audio"]
-input_features = processor(sample["array"], sampling_rate=sample["sampling_rate"], return_tensors="pt").input_features 
+audio_file_path = './backend/samples/test1.flac'
+audio, sampling_rate = sf.read(audio_file_path)
+
+input_features = processor(audio.tolist(), sampling_rate=sampling_rate, return_tensors="pt").input_features 
 
 
 # generate token ids
