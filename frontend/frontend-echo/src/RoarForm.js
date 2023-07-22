@@ -20,6 +20,9 @@ function RoarForm() {
     const chunksRef = useRef([]);
 
     async function sendInput(inputValue) {
+        console.log("SENDING INPUT");
+        console.log(inputValue);
+
         setLoading(true);
         const provider = new JsonRpcProvider(HARDHAT_LOCALHOST_RPC_URL);
         const signer = ethers.Wallet.fromMnemonic(
@@ -37,10 +40,13 @@ function RoarForm() {
     }
 
     function startRecording() {
+        chunksRef.current = [];
         navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
             mediaRecorderRef.current = new MediaRecorder(stream);
             mediaRecorderRef.current.ondataavailable = (event) => {
-                chunksRef.current.push(event.data);
+                if (event.data.size > 0) {
+                    chunksRef.current.push(event.data);
+                }
             };
             mediaRecorderRef.current.onstop = () => {
                 const blob = new Blob(chunksRef.current, {
@@ -48,7 +54,9 @@ function RoarForm() {
                 });
                 const audioURL = URL.createObjectURL(blob);
                 audioPlayerRef.current.src = audioURL;
-                chunksRef.current = [];
+
+                // Limpiar los chunks de grabación después de detener la grabación
+                //chunksRef.current = [];
             };
             mediaRecorderRef.current.start();
             setRecording(true);
@@ -69,21 +77,30 @@ function RoarForm() {
         if (audioPlayerRef.current) {
             audioPlayerRef.current.play();
         }
+        console.log("PLAY RECORDING");
     }
 
     async function sendAudioRecording() {
+        console.log("SENDING RECORDING 1");
+
         if (chunksRef.current.length === 0) {
             return; // No hay grabación para enviar
         }
 
         setLoading(true);
         const blob = new Blob(chunksRef.current, {
-            type: "audio/flac; codecs=opus",
+            type: "audio/x-flac",
         });
         const arrayBuffer = await blob.arrayBuffer();
         const uint8Array = new Uint8Array(arrayBuffer);
+        console.log("SENDING RECORDING 2");
 
-        sendInput(uint8Array);
+        console.log("INPUT ARRAY");
+        console.log(uint8Array);
+        await sendInput(uint8Array);
+
+        // Limpiar el localStorage
+        localStorage.clear();
     }
 
     return (
