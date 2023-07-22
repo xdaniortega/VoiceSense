@@ -1,0 +1,6 @@
+requests == 2.23.0
+py_expression_eval == 0.3.14
+transformers == 4.31.0
+soundfile == 0.12.1
+torch
+pydub
