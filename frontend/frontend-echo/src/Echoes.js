@@ -1,9 +1,8 @@
 import { ethers } from "ethers";
 import { useQuery, gql } from "@apollo/client";
-import { useToast } from "@chakra-ui/react";
+import { useToast, Spinner } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import QRCode from "qrcode.react";
-import Web3 from "web3";
 
 // GraphQL query to retrieve notices given a cursor
 const GET_NOTICES = gql`
@@ -33,7 +32,6 @@ let qrCodeValue = ""; // Use an empty string as the default value
 // This component sends GraphQL requests to the Cartesi Rollups Query Server
 function EchoesList() {
     const toast = useToast();
-    const [noticeEchoes, setNoticeEchoes] = useState([]);
     const [cursor, setCursor] = useState(null);
     const [qrCodeValue, setQrCodeValue] = useState("");
 
@@ -139,7 +137,7 @@ function EchoesList() {
             }
         });
     }
-    return qrCodeValue ? <QRCode value={qrCodeValue}></QRCode> : null;
+    return qrCodeValue ? <QRCode value={qrCodeValue}></QRCode> : <Spinner />;
 }
 
 function Echoes() {

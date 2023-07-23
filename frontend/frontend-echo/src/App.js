@@ -21,7 +21,7 @@ import {
 import { Web3Modal, useWeb3Modal, Web3Button } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { arbitrum, mainnet, polygon } from "wagmi/chains";
-import SignClient from "@walletconnect/sign-client";
+import Web3 from "web3";
 
 // Simple App to present the Input field and produced Notices
 function App() {
@@ -40,7 +40,13 @@ function App() {
         publicClient,
     });
     const ethereumClient = new EthereumClient(wagmiConfig, chains);
-    const { open, close } = useWeb3Modal();
+
+    useEffect(() => {
+        const handleConnectWallet = async () => {
+            // Ahora puedes usar web3 para interactuar con la blockchain
+        };
+        handleConnectWallet();
+    }, []);
 
     return (
         <div className="App">
@@ -61,7 +67,7 @@ function App() {
                 </Heading>
                 <HStack>
                     <Button onClick={toggleColorMode}>
-                        {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+                        {colorMode === "dark" ? <MoonIcon /> : <SunIcon />}
                     </Button>
                     <Web3Button />
                 </HStack>
