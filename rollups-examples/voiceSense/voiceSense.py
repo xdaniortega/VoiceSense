@@ -20,7 +20,7 @@ from transformers import WhisperProcessor, WhisperForConditionalGeneration
 import soundfile as sf
 import io
 from pydub import AudioSegment
-import binascii
+import re
 import os
 
 
@@ -39,6 +39,25 @@ model.config.forced_decoder_ids = None
 output_file_path = "output_audio.webm"
 # Ruta donde se guardará el archivo de audio en formato flac
 flac_audio_file_path = 'output_audio.flac'
+
+def parse_transaction_input(input_string):
+    # Define el patrón de regex para extraer el monto y la dirección del receptor
+    # Acepta tanto "Eth" como "Ethereum", y nombres de dominio con múltiples segmentos.
+    pattern = r"Send\s+(\d+(\.\d+)?)\s+(Eth|Ethereum|eth|ethereum)\s+to\s+([\w\.]+)"
+
+    # Busca el patrón en el input_string
+    match = re.search(pattern, input_string)
+
+    if match:
+        # Extrae el monto y la dirección del receptor desde los grupos capturados por el patrón de regex
+        amount = float(match.group(1))
+        receiver_address = match.group(4)
+
+        return amount, receiver_address
+    else:
+        raise ValueError("Input inválido")
+
+    
 
 def loadAndProcess(data):
     logger.info("Loading and processing audio")
@@ -87,17 +106,22 @@ def str2hex(str):
 
 def handle_advance(data):
 
-    logger.info(f"Received advance request data {data}")
+    #logger.info(f"Received advance request data {data}")
 
     status = "accept"
     try:
 
         input_bytes = bytes.fromhex(data["payload"][2:])
+        
         output = loadAndProcess(input_bytes)
+        # Unir las cadenas
+        #logger.info(f"List: {processedVoiceAsList}")
 
-
-        #input = hex2str(data["payload"])
-        #logger.info(f"Received input: {input}")
+        #processedVoicetoString = ''.join(processedVoiceAsList)
+        #logger.info(f"something{processedVoicetoString}")
+        #logger.info(f"type{type(processedVoicetoString)}")
+        #output = parse_transaction_input(processedVoicetoString)
+        logger.info(f"Output: {output}")
 
         # Evaluates expression
         #parser = Parser()

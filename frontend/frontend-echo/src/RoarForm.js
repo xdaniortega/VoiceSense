@@ -107,18 +107,18 @@ function RoarForm() {
         <div>
             {!recording ? (
                 <Button onClick={startRecording} colorScheme="blue">
-                    Comenzar a grabar
+                    Record
                 </Button>
             ) : (
                 <Button onClick={stopRecording} colorScheme="red">
-                    Detener grabación
+                    Stop
                 </Button>
             )}
             <Button onClick={playRecording} colorScheme="green">
-                Reproducir grabación
+                Play Back
             </Button>
             <Button onClick={sendAudioRecording} colorScheme="purple">
-                Enviar audio
+                Send Audio
             </Button>
         </div>
     );
