@@ -136,12 +136,3 @@ We had to switch the audio formats from web to Flac, as Hugging Face's ML module
 ### Lack of out-of-the-box customisation for CArtesi DApps
 
 Cartesi's [custom DApp template](https://github.com/cartesi/rollups-examples/tree/main/custom-dapps) is currently dysfunctional. To customize an existing Cartesi DApp example, we had to clone the Calculator DApp and use it as our base.
-
-THINGS I LIKE TO SEE:
-
-- MORE EXPLANAITON OF THE OBJECTIVE, MAYBE THE ONE AT THE ETHGLOBAL PAGE
-- PUT VIDEO SCRIPT
-- PUT PICTURES OF THE ARCHITECHTURE
-- ALL THE INFORMATION HAS TO BE HERE
-- EXPLAIN POSSIBLE IDEAS WE HAD (PUSH AND XMPT), ALSO DEPLOYMENTS ON LAYER 2s
-- web3modal could be used to load our own custom wallet after forking it
