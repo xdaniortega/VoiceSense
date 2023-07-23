@@ -20,33 +20,30 @@ import {
 } from "@web3modal/ethereum";
 import { Web3Modal, useWeb3Modal, Web3Button } from "@web3modal/react";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { arbitrum, mainnet, polygon } from "wagmi/chains";
-import Web3 from "web3";
+import { goerli, hardhat } from "wagmi/chains";
+import { infuraProvider } from "@wagmi/core/providers/infura";
 
 // Simple App to present the Input field and produced Notices
 function App() {
     const [accountIndex] = useState(0);
     const { colorMode, toggleColorMode } = useColorMode();
 
-    const chains = [arbitrum, mainnet, polygon];
+    const chainsdefinition = [goerli, hardhat];
     const projectId = "5f48353918f5739d49b45c217683f7a8";
 
-    const { publicClient } = configureChains(chains, [
-        w3mProvider({ projectId }),
+    const { chains, publicClient } = configureChains(chainsdefinition, [
+        w3mProvider({
+            projectId: projectId,
+        }),
+        infuraProvider({ apiKey: "8981940ba6cd457195acaf4c69fb10fa" }),
     ]);
+
     const wagmiConfig = createConfig({
         autoConnect: true,
         connectors: w3mConnectors({ projectId, chains }),
         publicClient,
     });
     const ethereumClient = new EthereumClient(wagmiConfig, chains);
-
-    useEffect(() => {
-        const handleConnectWallet = async () => {
-            // Ahora puedes usar web3 para interactuar con la blockchain
-        };
-        handleConnectWallet();
-    }, []);
 
     return (
         <div className="App">

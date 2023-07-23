@@ -4739,6 +4739,22 @@
   dependencies:
     valtio "1.10.7"
 
+"@walletconnect/modal-sign-html@2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@walletconnect/modal-sign-html/-/modal-sign-html-2.6.0.tgz#4042505b07a6d5e0e24931bbade24f97fd752529"
+  integrity sha512-KDJCopBJd6NGoy04SyP8Vwk/DpmFKIdXeBx4AJEZgeUm4pyJMxPwfmcQqHvvZ1DAUHU42+KqeUEgZ0rG51pmAg==
+  dependencies:
+    "@walletconnect/modal" "2.6.0"
+    "@walletconnect/sign-client" "2.9.0"
+
+"@walletconnect/modal-sign-react@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@walletconnect/modal-sign-react/-/modal-sign-react-2.6.0.tgz#c21d473b949380bbd7a51a20861d2dddf64fa1ca"
+  integrity sha512-5Sghm7/QB93X+aUjuU0GoDyUuZTEveSXeEVIurqQsfhpwU0QzFozrKd9i4kfTZQZsnubZ9j5uddMNX7xFlbkqQ==
+  dependencies:
+    "@walletconnect/modal-sign-html" "2.6.0"
+    mitt "3.0.1"
+
 "@walletconnect/modal-ui@2.5.9":
   version "2.5.9"
   resolved "https://registry.npmjs.org/@walletconnect/modal-ui/-/modal-ui-2.5.9.tgz"
@@ -4767,7 +4783,7 @@
     "@walletconnect/modal-core" "2.5.9"
     "@walletconnect/modal-ui" "2.5.9"
 
-"@walletconnect/modal@^2.6.0":
+"@walletconnect/modal@2.6.0", "@walletconnect/modal@^2.6.0":
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/@walletconnect/modal/-/modal-2.6.0.tgz#c29b5b6da93e0f5e699a9fd6bb385001a8e4aa4b"
   integrity sha512-hV8pfWvUDjanxfXZ7DouyboM+LOcSsJBX3cMsDyNwe0f19W/yIZTUQz9k4DkuIGjEQSUO9zfEX+BAYAeP27uag==
@@ -9897,6 +9913,11 @@ minimist@^1.2.0, minimist@^1.2.6:
   version "1.2.7"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.7.tgz"
   integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
+
+mitt@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
+  integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
 
 mkdirp@~0.5.1:
   version "0.5.6"
