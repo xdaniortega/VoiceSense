@@ -1,3 +1,6 @@
+[![EthGlobal Paris Finalist 2023](https://img.shields.io/badge/EthGlobal%20Paris-Finalist%202023-e67e22?style=for-the-badge&logo=ethereum)](#)
+[![WalletConnect Top 10 Integrators](https://img.shields.io/badge/WalletConnect-Top%2010%20Integrators-0066cc?style=for-the-badge&logo=walletconnect)](#)
+
 # VoiceSense
 
 ## Objective
